@@ -1,0 +1,18 @@
+current directory: /home/samiul/code/Project/to_do/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+/home/samiul/.asdf/installs/ruby/3.3.6/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /home/samiul/code/Project/to_do/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241218-10987-cah4jk sitelibdir\=./.gem.20241218-10987-cah4jk clean
+
+current directory: /home/samiul/code/Project/to_do/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241218-10987-cah4jk sitelibdir\=./.gem.20241218-10987-cah4jk
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /home/samiul/code/Project/to_do/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241218-10987-cah4jk sitelibdir\=./.gem.20241218-10987-cah4jk install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20241218-10987-cah4jk/skiptrace/internal
+
+current directory: /home/samiul/code/Project/to_do/vendor/bundle/ruby/3.3.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20241218-10987-cah4jk sitelibdir\=./.gem.20241218-10987-cah4jk clean
