@@ -1,28 +1,14 @@
-<h1>Tasks</h1>
 <%= link_to "New Task", new_task_path %>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Completed</th>
-      <th>Deadline</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="container mt-4">
+  <h1 class="mb-2">Tasks</h1>
+  <div class="row">
     <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.completed ? "Yes" : "No" %></td>
-        <td><%= task.deadline %></td>
-        <td>
-          <%= link_to "Show", task_path(task) %> |
-          <%= link_to "Edit", edit_task_path(task) %> 
-          <%= button_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" } %>
-        </td>
-      </tr>
+      <div class="col-md-4 mb-3"> <!-- Adjust col-md-4 for three cards per row -->
+        <%= render partial: 'task_card', locals: { task: task } %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+
+
+
