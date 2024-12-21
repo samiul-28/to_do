@@ -1,21 +1,31 @@
-<%= form_with model: task do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-  <div>
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
-  </div>
-  <div>
-    <%= f.label :deadline %>
-    <%= f.datetime_select :deadline %>
-  </div>
-  <div>
-    <%= f.submit %>
+<%= form_with model: task, local: true do |form| %>
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title">
+        <%= task.new_record? ? 'Create New Task' : 'Edit Task' %>
+      </h5>
+    </div>
+    <div class="card-body">
+      <div class="mb-3">
+        <%= form.label :title, "Task Title", class: "form-label" %>
+        <%= form.text_field :title, class: "form-control", placeholder: "Enter task title" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :description, "Task Description", class: "form-label" %>
+        <%= form.text_area :description, class: "form-control", placeholder: "Enter task description" %>
+      </div>
+      <div class="mb-3 form-check">
+        <%= form.check_box :completed, class: "form-check-input" %>
+        <%= form.label :completed, "Mark as Completed", class: "form-check-label" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :deadline, "Task Deadline", class: "form-label" %>
+        <%= form.datetime_select :deadline, class: "form-control" %>
+      </div>
+    </div>
+    <div class="card-footer">
+      <%= form.submit task.new_record? ? 'Create Task' : 'Update Task', class: "btn btn-primary" %>
+      <%= link_to 'Back', tasks_path, class: "btn btn-secondary" %>
+    </div>
   </div>
 <% end %>

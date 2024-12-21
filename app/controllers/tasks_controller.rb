@@ -3,7 +3,8 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    @tasks = Task.all
+    #@tasks = Task.all
+    @tasks = Task.order(:deadline) 
   end
 
   def show

@@ -1,14 +1,15 @@
 <%= link_to "New Task", new_task_path %>
 <div class="container mt-4">
-  <h1 class="mb-2">Tasks</h1>
+  <h1 class="mb-3">Tasks</h1>
   <div class="row">
     <% @tasks.each do |task| %>
-      <div class="col-md-4 mb-3"> <!-- Adjust col-md-4 for three cards per row -->
+      <div class="col-md-4 mb-3">
         <%= render partial: 'task_card', locals: { task: task } %>
       </div>
     <% end %>
   </div>
 </div>
+
 
 
 
