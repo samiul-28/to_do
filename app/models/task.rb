@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
     validates :title, presence: true
-
+    has_many :comments, dependent: :destroy
+    
     validate :deadline_cannot_be_in_the_past
   def deadline_cannot_be_in_the_past
     if deadline.present? && deadline < Date.today
