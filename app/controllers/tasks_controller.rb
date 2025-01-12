@@ -3,8 +3,14 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    #@tasks = Task.all
-    @tasks = Task.order(:deadline) 
+    if params[:category_name]
+      @category = Category.find_by(name: "#{params[:category_name]}")
+      @tasks = Task.where(category: @category.name) 
+    else
+      @tasks = Task.order(:deadline) 
+
+    end
+    
   end
 
   def show
@@ -49,6 +55,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :completed, :deadline)
+    params.require(:task).permit(:title, :description, :completed, :deadline )
   end
 end

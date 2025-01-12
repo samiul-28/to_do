@@ -4,29 +4,45 @@
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="/" class="nav-link active" aria-current="page">
-        <i class="bi bi-house"></i> Home
-      </a>
+     
+    <li>
+      <%= link_to "New Task", new_task_path, class: "btn btn-primary" %>
+
     </li>
+   
     <li>
       <a href="/tasks" class="nav-link link-dark">
         <i class="bi bi-list-task"></i> Tasks
       </a>
     </li>
+     
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <li><%= link_to 'Work', tasks_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Personal', tasks_path, class: 'dropdown-item' %></li>
+            <li><%= link_to 'Shopping', tasks_path, class: 'dropdown-item' %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'Add New Category', new_task_path, class: 'dropdown-item' %></li>
+          </ul>
+    </li>
+
     <li>
       <a href="/tasks" class="nav-link link-dark">
         <i class="bi bi-check-circle"></i> Completed
       </a>
     </li>
-    <li>
-      <a href="/profile" class="nav-link link-dark">
-        <i class="bi bi-person"></i> Profile
-      </a>
-    </li>
-    
+   
+    <div style="position: absolute; bottom: 20px;">
+          <% if user_signed_in? %>
+            <%= button_to "Logout", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
+          <% else %>
+            <%= link_to "Signup", new_user_registration_path, class: "btn btn-secondary" %> |
+            <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
 
+          <% end %>
+    </div>
   </ul>
-  <hr>
-  
 </div>

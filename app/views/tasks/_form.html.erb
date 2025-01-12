@@ -22,6 +22,11 @@
         <%= form.label :deadline, "Task Deadline", class: "form-label" %>
         <%= form.datetime_select :deadline, class: "form-control" %>
       </div>
+      <div class="field">
+        <%= form.label :category_id, "Category" %>
+        <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" } %>
+      </div>
+
     </div>
     <div class="card-footer">
       <%= form.submit task.new_record? ? 'Create Task' : 'Update Task', class: "btn btn-primary" %>
