@@ -1,19 +1,20 @@
-<h1>Tasks</h1>
-
-<%= form_with(url: tasks_path, method: :get, local: true) do %>
-  <%= select_tag :category_name, 
+<div class="container mt-4">
+  <h1 class="mb-3">Tasks</h1>
+    <%= form_with(url: tasks_path, method: :get, local: true) do %>
+      <%= select_tag :category_name, 
                  options_for_select(Category::DEFAULT_CATEGORIES, params[:category_name]), 
                  prompt: "Select Category", 
                  onchange: 'this.form.submit();' %>
-<% end %>
+    <% end %>
 
-
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= task.title %> - <%= link_to 'Show', task_path(task) %></li>
-  <% end %>
-</ul>
-
+    <div class="row">
+      <% @tasks.each do |task| %>
+          <div class="col-md-4 mb-3">
+            <%= task.title %> - <%= link_to 'Show', task_path(task) %>
+          </div>   
+      <% end %>   
+    </div> 
+</div>    
 
 
 

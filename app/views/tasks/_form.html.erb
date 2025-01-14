@@ -22,10 +22,11 @@
         <%= form.label :deadline, "Task Deadline", class: "form-label" %>
         <%= form.datetime_select :deadline, class: "form-control" %>
       </div>
-      <div class="field">
-        <%= form.label :category_id, "Category" %>
-        <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select Category" } %>
+      <div class="mb-3">
+        <%= form.label :category_id, "Category", class: "form-label" %>
+        <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a category" }, class: "form-select" %>
       </div>
+
 
     </div>
     <div class="card-footer">

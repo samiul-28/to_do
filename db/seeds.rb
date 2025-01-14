@@ -8,12 +8,3 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-seed_hash = [
-  { name: "Work-2" },
-  { name: "Personal-2" },
-  { name: "Shopping-2" }
-]
-
-seed_hash.each do |c|
-  Category.create!(c)
-end 

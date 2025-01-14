@@ -5,7 +5,7 @@ class TasksController < ApplicationController
   def index
     if params[:category_name]
       @category = Category.find_by(name: "#{params[:category_name]}")
-      @tasks = Task.where(category: @category.name) 
+      @tasks = Task.where(category: @category) 
     else
       @tasks = Task.order(:deadline) 
 
@@ -25,6 +25,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    
     if @task.save
       redirect_to tasks_path, notice: "Task was successfully created."
     else
@@ -55,6 +56,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :completed, :deadline )
+    params.require(:task).permit(:title, :description, :completed, :deadline, :category_id )
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_30_085315) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_13_095154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -37,7 +37,8 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_085315) do
     t.datetime "deadline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "category"
+    t.bigint "category_id", null: false
+    t.index ["category_id"], name: "index_tasks_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +56,5 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_30_085315) do
 
   add_foreign_key "comments", "tasks"
   add_foreign_key "comments", "users"
+  add_foreign_key "tasks", "categories"
 end

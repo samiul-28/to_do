@@ -1,13 +1,15 @@
 <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 250px; height: 100vh;">
   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
     <span class="fs-4">To-Do App</span>
+    <%= link_to "Add New Task", new_task_path, class: "btn btn-info" %>  
   </a>
   <hr>
   <ul class="nav nav-pills flex-column mb-auto">
      
     <li>
-      <%= link_to "New Task", new_task_path, class: "btn btn-primary" %>
-
+      <a href="/tasks" class="nav-link link-dark">
+        <i class="bi bi-list-task"></i> All-Tasks
+      </a>
     </li>
    
     <li>
@@ -16,31 +18,16 @@
       </a>
     </li>
      
-    <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Categories
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-            <li><%= link_to 'Work', tasks_path, class: 'dropdown-item' %></li>
-            <li><%= link_to 'Personal', tasks_path, class: 'dropdown-item' %></li>
-            <li><%= link_to 'Shopping', tasks_path, class: 'dropdown-item' %></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><%= link_to 'Add New Category', new_task_path, class: 'dropdown-item' %></li>
-          </ul>
-    </li>
+   
 
-    <li>
-      <a href="/tasks" class="nav-link link-dark">
-        <i class="bi bi-check-circle"></i> Completed
-      </a>
-    </li>
+    
    
     <div style="position: absolute; bottom: 20px;">
           <% if user_signed_in? %>
-            <%= button_to "Logout", destroy_user_session_path, class: "btn btn-danger", method: :delete %>
+            <%= button_to "Logout", destroy_user_session_path, class: "btn btn-outline-danger", method: :delete %>
           <% else %>
-            <%= link_to "Signup", new_user_registration_path, class: "btn btn-secondary" %> |
-            <%= link_to "Login", new_user_session_path, class: "btn btn-success" %>
+            <%= link_to "Signup", new_user_registration_path, class: "btn btn-outline-secondary" %> |
+            <%= link_to "Login", new_user_session_path, class: "btn btn-outline-success" %>
 
           <% end %>
     </div>
