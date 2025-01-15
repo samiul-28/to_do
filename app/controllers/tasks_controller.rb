@@ -3,15 +3,20 @@ class TasksController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   
   def index
-    if params[:category_name]
-      @category = Category.find_by(name: "#{params[:category_name]}")
-      @tasks = Task.where(category: @category) 
-    else
-      @tasks = Task.order(:deadline) 
-
+    @tasks = Task.all
+  
+    if params[:query].present?
+      @tasks = @tasks.where("title LIKE ? OR description LIKE ?", "%#{params[:query]}%", "%#{params[:query]}%")
     end
-    
+  
+    if params[:category_name].present?
+      @category = Category.find_by(name: params[:category_name])
+      @tasks = @tasks.where(category: @category) if @category
+    end
+  
+    @tasks = @tasks.order(:deadline)
   end
+  
 
   def show
     @task = Task.find(params[:id])

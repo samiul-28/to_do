@@ -1,40 +1,39 @@
 <div class="container mt-4">
-  <h1 class="mb-3">Tasks</h1>
-    <%= form_with(url: tasks_path, method: :get, local: true) do %>
-      <%= select_tag :category_name, 
-                 options_for_select(Category::DEFAULT_CATEGORIES, params[:category_name]), 
-                 prompt: "Select Category", 
-                 onchange: 'this.form.submit();' %>
-    <% end %>
+  <div class="d-flex justify-content-between mb-3">
+    <h1 class="mb-0">Available Tasks </h1>
+    <div class="search-form">
+      <%= form_with url: tasks_path, method: :get, local: true do |form| %>
+        <%= form.text_field :query, placeholder: "Search tasks", value: params[:query], class: "form-control d-inline-block" %>
+        <%= form.submit "Search", class: "btn btn-outline-success" %>
+      <% end %>
+    </div>
+  </div>
 
+  <%= form_with url: tasks_path, method: :get, local: true do %>
+    <%= select_tag :category_name, 
+                   options_for_select(Category::DEFAULT_CATEGORIES, params[:category_name]), 
+                   prompt: "Select Category", 
+                   onchange: 'this.form.submit();', 
+                   class: "form-select mb-3" %>
+  <% end %>
+
+  
+  <% if @tasks.any? %>
+    <p>Total <strong><%= @tasks.count %></strong> task(s).</p>
     <div class="row">
       <% @tasks.each do |task| %>
-          <div class="col-md-4 mb-3">
-            <%= task.title %> - <%= link_to 'Show', task_path(task) %>
-          </div>   
-      <% end %>   
-    </div> 
-</div>    
-
-
-
-
-
-<%
-=begin%>
- <div class="container mt-4">
-  <h1 class="mb-3">Tasks</h1>
-  <div class="row">
-    <% @tasks.each do |task| %>
-      <div class="col-md-4 mb-3">
-        <%= render partial: 'task_card', locals: { task: task } %>
-      </div>
-    <% end %>
-  </div>
-</div> 
-<%
-=end%>
-
-
-
-
+        <div class="col-md-4 mb-3">
+          <div class="card" style="cursor: pointer;" onclick="window.location='<%= task_path(task) %>'">
+            <div class="card-body">
+              <h5 class="card-title"><%= task.title %></h5>
+              <p class="card-text"><%= truncate(task.description, length: 100) %></p>
+              <small class="text-muted">Deadline: <%= task.deadline.strftime('%d %b %Y') if task.deadline %></small>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-danger">No tasks found for your search or selected category.</p>
+  <% end %>
+</div>
