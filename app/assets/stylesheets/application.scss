@@ -1,23 +1,4 @@
 
-.nav-link {
-    
-    display: flex;
-    align-items: center;
-    gap: 8px; /* Space between icon and text */
-    position: fixed;
-  }
-  
-  .nav-link.active {
-    background-color: #a2c6ec;
-    color: #fff;
-  }
-  
-  .nav-link.active:hover {
-    background-color: #243d58;
-  }
-
-
-
 .search-form {
   position: absolute;
   right: 20px; 

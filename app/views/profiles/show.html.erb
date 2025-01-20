@@ -1,0 +1,7 @@
+<!-- app/views/profiles/show.html.erb -->
+<h1><%= @profile.name %>'s Profile</h1>
+<p><strong>Bio:</strong> <%= @profile.bio %></p>
+<p><strong>Location:</strong> <%= @profile.location %></p>
+<%= image_tag @profile.picture if @profile.picture.attached? %>
+
+<%= link_to 'Edit Profile', edit_profile_path %>

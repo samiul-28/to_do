@@ -1,22 +1,21 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between mb-3">
-    <h1 class="mb-0">Available Tasks </h1>
+    <h1 class="mb-0">All Tasks </h1>
     <div class="search-form">
       <%= form_with url: tasks_path, method: :get, local: true do |form| %>
-        <%= form.text_field :query, placeholder: "Search tasks", value: params[:query], class: "form-control d-inline-block" %>
-        <%= form.submit "Search", class: "btn btn-outline-success" %>
+        <%= form.text_field :query, placeholder: "Search", value: params[:query], class: "form-control d-inline-block" %>
       <% end %>
     </div>
   </div>
-
-  <%= form_with url: tasks_path, method: :get, local: true do %>
-    <%= select_tag :category_name, 
-                   options_for_select(Category::DEFAULT_CATEGORIES, params[:category_name]), 
-                   prompt: "Select Category", 
-                   onchange: 'this.form.submit();', 
-                   class: "form-select mb-3" %>
-  <% end %>
-
+  <div class="d-flex justify-content-between mb-2" >
+      <%= form_with url: tasks_path, method: :get, local: true do %>
+        <%= select_tag :category_name, 
+                      options_for_select(Category::DEFAULT_CATEGORIES, params[:category_name]), 
+                      prompt: "Select Category", 
+                      onchange: 'this.form.submit();', 
+                      class: "form-select mb-3" %>
+      <% end %>
+  </div>
   
   <% if @tasks.any? %>
     <p>Total <strong><%= @tasks.count %></strong> task(s).</p>
